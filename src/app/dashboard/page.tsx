@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const questions = [
   {
@@ -40,10 +41,15 @@ const questions = [
   }
 ];
 
-function Page() {
+
+
+
+function DashboardPage() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState(Array(questions.length).fill(null));
   const [submitted, setSubmitted] = useState(false);
+  const [correct, setCorrect] = useState(0);
+  const router = useRouter();
 
   const handleSelect = (option: string) => {
     const newSelectedOptions = [...selectedOptions];
@@ -52,6 +58,9 @@ function Page() {
   };
 
   const handleSubmit = () => {
+    if (selectedOptions[currentQuestion] === questions[currentQuestion].answer) {
+      setCorrect(correct + 1);
+    }
     setSubmitted(true);
   };
 
@@ -59,6 +68,9 @@ function Page() {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSubmitted(false);
+    } else {
+      // Redirect to result page after the last question
+      router.push(`/result?correct=${correct}&total=${questions.length}`);
     }
   };
 
@@ -70,8 +82,8 @@ function Page() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="border bg-black text-white p-4 w-96">
+    <div className="flex justify-center items-center min-h-screen rounded-sm">
+      <div className="border bg-black text-white p-8 rounded-sm w-[600px]">
         <div>
           <p>{questions[currentQuestion].question}</p>
         </div>
@@ -123,7 +135,7 @@ function Page() {
             <button
               onClick={handleNext}
               className={`bg-white text-black p-2 rounded-lg ${currentQuestion >= questions.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={currentQuestion >= questions.length - 1}
+              disabled={currentQuestion >= questions.length - 1 && !submitted}
             >
               Next
             </button>
@@ -131,7 +143,7 @@ function Page() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Page
+export default DashboardPage;
