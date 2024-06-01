@@ -1,6 +1,6 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Question {
   Question: string;
@@ -11,12 +11,14 @@ interface Question {
 function DashboardPage() {
   const [ques, setQues] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState(Array(ques.length).fill(null));
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(0);
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const topic = searchParams.get('topic');
 
-  const handleSelect = (option:string) => {
+  const handleSelect = (option: string) => {
     const newSelectedOptions = [...selectedOptions];
     newSelectedOptions[currentQuestion] = option;
     setSelectedOptions(newSelectedOptions);
@@ -44,28 +46,30 @@ function DashboardPage() {
       setSubmitted(false);
     }
   };
-  
-  
 
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
+        if (!topic) {
+          throw new Error('Topic is not specified');
+        }
         const response = await fetch('http://localhost:3001/api/post/question', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ topic: 'frontend development' }),
+          body: JSON.stringify({ topic }),
         });
         const data = await response.json();
         console.log(data);
         setQues(data);
+        setSelectedOptions(Array(data.length).fill(null)); 
       } catch (error) {
         console.error('Error fetching questions:', error);
       }
     };
     fetchQuestions();
-  }, []);
+  }, [topic]);
 
   return (
     <div className="flex justify-center items-center min-h-screen rounded-sm">
@@ -128,12 +132,9 @@ function DashboardPage() {
           ) : (
             <button
               onClick={handleNext}
-              className={`bg-white text-black p-2 rounded-lg ${
-                currentQuestion >= ques.length - 1 ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
-              disabled={currentQuestion >= ques.length - 1 && !submitted}
+              className="bg-white text-black p-2 rounded-lg"
             >
-              Next
+              {currentQuestion >= ques.length - 1 ? 'Finish' : 'Next'}
             </button>
           )}
         </div>
