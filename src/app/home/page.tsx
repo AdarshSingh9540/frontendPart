@@ -23,15 +23,20 @@ export default function Page() {
   };
 
   return (
-    <div>
-      <h1>Send Topic to Backend</h1>
+    <div className='flex flex-col items-center justify-center h-screen'>
+      <div>
+      <h1 className='font-bold text-3xl shadow-lg'>Send Topic to Backend</h1>
+      </div>
+      <div className='mt-8 '>
       <input
+      className='shadow-lg m-4 p-3'
         type="text"
         placeholder="Enter topic"
         value={topic}
         onChange={(e) => setTopic(e.target.value)}
       />
-      <button onClick={sendData}>Send Topic</button>
+      <button className='bg-blue-500 font-semibold text-white p-2 rounded-md' onClick={sendData}>Send Topic</button>
+    </div>
     </div>
   );
 }
