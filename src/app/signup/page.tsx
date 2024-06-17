@@ -8,19 +8,19 @@ function Page() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleFirstNameChange = (e) => {
+    const handleFirstNameChange = (e:any) => {
         setFirstName(e.target.value);
     }
 
-    const handleLastNameChange = (e) => {
+    const handleLastNameChange = (e:any) => {
         setLastName(e.target.value);
     }
 
-    const handleUsernameChange = (e) => {
+    const handlEmailChange = (e:any) => {
         setEmail(e.target.value);
     }
 
-    const handlePasswordChange = (e) => {
+    const handlePasswordChange = (e:any) => {
         setPassword(e.target.value);
     }
 
@@ -54,15 +54,14 @@ function Page() {
                     />
                 </div>
                 <div className='flex justify-between my-4'>
-                    <label className='mx-2 text-lg' htmlFor="username">Username</label>
+                    <label className='mx-2 text-lg' htmlFor="username">Email</label>
                     <input
                         className='p-2 text-black rounded-md'
                         type="text"
-                        id="username"
-                        placeholder='username'
-                        value={email
-                        }
-                        onChange={handleUsernameChange}
+                        id="email"
+                        placeholder='Email'
+                        value={email }
+                        onChange={handlEmailChange}
                     />
                 </div>
                 <div className='flex justify-between my-4'>
@@ -81,14 +80,14 @@ function Page() {
                     
                     className='bg-red-500 p-2 rounded-md w-full' 
                     onClick={async () => {
-                        const response = await axios.post("http://localhost:3000/signup", {
+                        const response = await axios.post("http://localhost:3001/api/auth/signup", {
                           email,
                           firstName,
                           lastName,
                           password
                         });
                         console.log("Form submitted:", { firstName, lastName, email, password });
-                        localStorage.setItem("token", response.data.token)
+                        // localStorage.setItem("token", response.data.token)
                         // navigate("/dashboard")
                       }} 
                     >

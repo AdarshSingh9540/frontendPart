@@ -29,7 +29,7 @@ export default function Page() {
       </div>
       <div className='mt-8 '>
       <input
-      className='shadow-lg m-4 p-3'
+      className='shadow-lg m-4 p-3 text-black'
         type="text"
         placeholder="Enter topic"
         value={topic}
