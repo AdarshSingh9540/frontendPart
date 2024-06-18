@@ -1,27 +1,46 @@
 'use client'
+
 import React, { useState } from 'react';
-import axios from "axios";
+import axios from 'axios';
+import { useRouter } from 'next/navigation'; 
 
 function Page() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter(); 
 
-    const handleFirstNameChange = (e:any) => {
+    const handleFirstNameChange = (e: any) => {
         setFirstName(e.target.value);
     }
 
-    const handleLastNameChange = (e:any) => {
+    const handleLastNameChange = (e: any) => {
         setLastName(e.target.value);
     }
 
-    const handlEmailChange = (e:any) => {
+    const handleEmailChange = (e: any) => {
         setEmail(e.target.value);
     }
 
-    const handlePasswordChange = (e:any) => {
+    const handlePasswordChange = (e: any) => {
         setPassword(e.target.value);
+    }
+
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post("http://localhost:3001/api/auth/signup", {
+                email,
+                firstName,
+                lastName,
+                password
+            });
+            console.log("Form submitted:", { firstName, lastName, email, password });
+            localStorage.setItem("token", response.data.token);
+            router.push("/home"); 
+        } catch (error) {
+            console.error("Error during signup:", error);
+        }
     }
 
     return (
@@ -54,18 +73,18 @@ function Page() {
                     />
                 </div>
                 <div className='flex justify-between my-4'>
-                    <label className='mx-2 text-lg' htmlFor="username">Email</label>
+                    <label className='mx-2 text-lg' htmlFor="email">Email</label>
                     <input
                         className='p-2 text-black rounded-md'
                         type="text"
                         id="email"
                         placeholder='Email'
-                        value={email }
-                        onChange={handlEmailChange}
+                        value={email}
+                        onChange={handleEmailChange}
                     />
                 </div>
                 <div className='flex justify-between my-4'>
-                    <label className='mx-2  text-lg' htmlFor="password">Password</label>
+                    <label className='mx-2 text-lg' htmlFor="password">Password</label>
                     <input
                         className='p-2 text-black rounded-md'
                         type="password"
@@ -77,19 +96,8 @@ function Page() {
                 </div>
                 <div>
                     <button 
-                    
-                    className='bg-red-500 p-2 rounded-md w-full' 
-                    onClick={async () => {
-                        const response = await axios.post("http://localhost:3001/api/auth/signup", {
-                          email,
-                          firstName,
-                          lastName,
-                          password
-                        });
-                        console.log("Form submitted:", { firstName, lastName, email, password });
-                        // localStorage.setItem("token", response.data.token)
-                        // navigate("/dashboard")
-                      }} 
+                        className='bg-red-500 p-2 rounded-md w-full' 
+                        onClick={handleSubmit}  // Use handleSubmit function
                     >
                         Submit
                     </button>
@@ -103,4 +111,3 @@ function Page() {
 }
 
 export default Page;
-
