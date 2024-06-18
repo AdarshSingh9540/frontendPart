@@ -14,6 +14,7 @@ function DashboardContent() {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [correct, setCorrect] = useState(0);
+  const [isLoading, setIsLoading] = useState(true); 
   const router = useRouter();
   const searchParams = useSearchParams();
   const topic = searchParams.get('topic');
@@ -63,13 +64,18 @@ function DashboardContent() {
         const data = await response.json();
         console.log(data);
         setQues(data);
-        setSelectedOptions(Array(data.length).fill(null)); 
+        setSelectedOptions(Array(data.length).fill(null));
+        setIsLoading(false); 
       } catch (error) {
         console.error('Error fetching questions:', error);
       }
     };
     fetchQuestions();
   }, [topic]);
+
+  if (isLoading) {
+    return <div>Loading...</div>; // Display loading message
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen rounded-sm">

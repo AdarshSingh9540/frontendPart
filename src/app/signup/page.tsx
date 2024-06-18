@@ -3,12 +3,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'; 
+import SimpleAlert from '../components/successsignup';
 
 function Page() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [showAlert, setShowAlert] = useState(false); // State to control the visibility of the alert
     const router = useRouter(); 
 
     const handleFirstNameChange = (e: any) => {
@@ -37,7 +39,11 @@ function Page() {
             });
             console.log("Form submitted:", { firstName, lastName, email, password });
             localStorage.setItem("token", response.data.token);
-            router.push("/home"); 
+            setShowAlert(true); // Show the alert component
+            // Redirect after some delay
+            setTimeout(() => {
+                router.push("/home");
+            }, 3000); // Redirect after 3 seconds
         } catch (error) {
             console.error("Error during signup:", error);
         }
@@ -105,6 +111,7 @@ function Page() {
                 <div className='flex justify-center mt-2'>
                     <p className='text-blue-500 cursor-pointer'>Already have an account? Sign in</p>
                 </div>
+                {showAlert && <SimpleAlert />} {/* Render SimpleAlert component if showAlert is true */}
             </div>
         </div>
     );
