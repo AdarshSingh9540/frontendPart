@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Question {
@@ -8,7 +8,7 @@ interface Question {
   answer: string;
 }
 
-function DashboardPage() {
+function DashboardContent() {
   const [ques, setQues] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
@@ -140,6 +140,14 @@ function DashboardPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+function DashboardPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DashboardContent />
+    </Suspense>
   );
 }
 
