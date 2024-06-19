@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { AuroraBackground } from "../components/ui/aurora-background";
 import { useRouter } from 'next/navigation'; 
-import { Button } from "../components/ui/moving-border";
+
 
 
 export function AuroraBackgroundDemo() {
