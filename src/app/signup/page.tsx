@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import SimpleAlert from '../components/successsignup';
 
 function Page() {
@@ -10,8 +10,8 @@ function Page() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [showAlert, setShowAlert] = useState(false); // State to control the visibility of the alert
-    const router = useRouter(); 
+    const [showAlert, setShowAlert] = useState(false);
+    const router = useRouter();
 
     const handleFirstNameChange = (e: any) => {
         setFirstName(e.target.value);
@@ -39,11 +39,12 @@ function Page() {
             });
             console.log("Form submitted:", { firstName, lastName, email, password });
             localStorage.setItem("token", response.data.token);
-            setShowAlert(true); // Show the alert component
-            // Redirect after some delay
+            localStorage.setItem("user", JSON.stringify({ firstName, lastName, email }));
+            setShowAlert(true);
+
             setTimeout(() => {
                 router.push("/home");
-            }, 3000); // Redirect after 3 seconds
+            }, 3000);
         } catch (error) {
             console.error("Error during signup:", error);
         }
@@ -103,7 +104,7 @@ function Page() {
                 <div>
                     <button 
                         className='bg-red-500 p-2 rounded-md w-full' 
-                        onClick={handleSubmit}  // Use handleSubmit function
+                        onClick={handleSubmit} 
                     >
                         Submit
                     </button>
@@ -111,7 +112,7 @@ function Page() {
                 <div className='flex justify-center mt-2'>
                     <p className='text-blue-500 cursor-pointer'>Already have an account? Sign in</p>
                 </div>
-                {showAlert && <SimpleAlert />} {/* Render SimpleAlert component if showAlert is true */}
+                {showAlert && <SimpleAlert />} 
             </div>
         </div>
     );

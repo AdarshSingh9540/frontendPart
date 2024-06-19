@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-
+import Animations from '../components/Shimmer';
 interface Question {
   Question: string;
   Options: string[];
@@ -74,7 +74,11 @@ function DashboardContent() {
   }, [topic]);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Display loading message
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Animations />
+      </div>
+    ); // Display loading message
   }
 
   return (
