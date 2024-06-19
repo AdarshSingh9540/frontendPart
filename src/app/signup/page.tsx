@@ -31,7 +31,7 @@ function Page() {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post("http://localhost:3001/api/auth/signup", {
+            const response = await axios.post("https://namastequiz-backend.vercel.app/api/auth/signup", {
                 email,
                 firstName,
                 lastName,
