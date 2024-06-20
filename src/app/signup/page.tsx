@@ -51,14 +51,14 @@ function Page() {
     }
 
     return (
-        <div className='flex items-center justify-center min-h-screen'>
-            <div>
-                <div className='flex flex-col justify-center items-center mb-6'>
+        <div className='flex items-center justify-center min-h-screen mx-2'>
+            <div className=''>
+                <div className='flex flex-col justify-center items-center mb-4'>
                     <h2 className='text-2xl font-extrabold'>Sign Up!</h2>
                     <h4 className='text-xl font-bold'>Enter Personal Information</h4>
                 </div>
                 <div className='flex justify-between my-4'>
-                    <label className='mx-2 text-lg' htmlFor="firstName">First Name</label>
+                    <label className='mx-1 text-lg' htmlFor="firstName">First Name</label>
                     <input
                         className='p-2 text-black rounded-md'
                         type="text"
@@ -69,7 +69,7 @@ function Page() {
                     />
                 </div>
                 <div className='flex justify-between my-4'>
-                    <label className='mx-2 text-lg' htmlFor="lastName">Last Name</label>
+                    <label className='mx-1 text-lg' htmlFor="lastName">Last Name</label>
                     <input
                         className='p-2 text-black rounded-md'
                         type="text"
@@ -80,7 +80,7 @@ function Page() {
                     />
                 </div>
                 <div className='flex justify-between my-4'>
-                    <label className='mx-2 text-lg' htmlFor="email">Email</label>
+                    <label className='mx-1 text-lg' htmlFor="email">Email</label>
                     <input
                         className='p-2 text-black rounded-md'
                         type="text"
@@ -91,7 +91,7 @@ function Page() {
                     />
                 </div>
                 <div className='flex justify-between my-4'>
-                    <label className='mx-2 text-lg' htmlFor="password">Password</label>
+                    <label className='mx-1 text-lg' htmlFor="password">Password</label>
                     <input
                         className='p-2 text-black rounded-md'
                         type="password"

@@ -23,7 +23,7 @@ export default function Page() {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen'>
+    <div className='flex flex-col items-center justify-center h-screen '>
       <div>
       <h1 className='font-bold text-3xl shadow-lg'>Send Topic to Backend</h1>
       </div>

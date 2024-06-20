@@ -32,7 +32,7 @@ function ResultPage() {
   const score = correct * 4;
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center items-center min-h-screen mx-2">
       <div className="border bg-black text-white p-8 rounded-sm w-[600px]">
         <h1 className="text-2xl font-bold mb-4">Quiz Results</h1>
         <p className="text-lg">Correct Answers: {correct} out of {total}</p>

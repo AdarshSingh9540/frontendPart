@@ -78,11 +78,11 @@ function DashboardContent() {
       <div className="flex items-center justify-center min-h-screen">
         <Animations />
       </div>
-    ); // Display loading message
+    ); 
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen rounded-sm">
+    <div className="flex justify-center items-center min-h-screen rounded-sm mx-2">
       <div className="border bg-black text-white p-8 rounded-sm w-[600px]">
         <div>
           <p>{ques[currentQuestion]?.Question}</p>
