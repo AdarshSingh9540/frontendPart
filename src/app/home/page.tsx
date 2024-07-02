@@ -20,19 +20,19 @@ export default function Page() {
   };
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen mx-2 overflow-hidden mr-4'>
+    <div className='flex flex-col items-center justify-center h-screen   overflow-hidden'>
       <div>
-        <h1 className='font-bold text-3xl mx-4 shadow-lg'>Send Topic to Backend</h1>
+        <h1 className='font-bold text-2xl lg:text-3xl  shadow-lg'>Enter Your Topic</h1>
       </div>
-      <div className='mt-8 w-full max-w-md'>
+      <div className=' w-full max-w-md p-6  lg:p-4 '>
         <input
-          className='shadow-lg m-4 p-3 text-black w-full'
+          className='shadow-lg p-3 rounded-lg text-black w-full'
           type="text"
           placeholder="Enter topic"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}
         />
-        <button className='bg-blue-800 hover:bg-blue-500 font-semibold text-white p-2 rounded-lg m-4 w-full text-lg' onClick={sendData}>Send Topic</button>
+        <button className='bg-blue-800 hover:bg-blue-500 font-semibold text-white p-2 rounded-lg w-full text-lg mt-4' onClick={sendData}>Send Topic</button>
       </div>
     </div>
   );
