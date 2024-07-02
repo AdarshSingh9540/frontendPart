@@ -51,70 +51,76 @@ function Page() {
     }
 
     return (
-        <div className='flex items-center justify-center min-h-screen mx-2'>
+       <div className='flex flex-col justify-center items-center h-screen  '>  
+          <div className='bg-slate-800 p-3 lg:p-8 rounded-lg'>
+          <div className='text-center '>
+            <h1 className='text-2xl font-bold'>Sign up!</h1>
+            <p className='text-lg font-semibold'>Enter your details</p>
+          </div>
+          <div className='m-6'>
+          <div >
             <div className=''>
-                <div className='flex flex-col justify-center items-center mb-4'>
-                    <h2 className='text-2xl font-extrabold'>Sign Up!</h2>
-                    <h4 className='text-xl font-bold'>Enter Personal Information</h4>
-                </div>
-                <div className='flex justify-between my-4'>
-                    <label className='mx-1 text-lg' htmlFor="firstName">First Name</label>
-                    <input
-                        className='p-2 text-black rounded-md'
-                        type="text"
-                        id="firstName"
-                        placeholder='Adarsh'
-                        value={firstName}
-                        onChange={handleFirstNameChange}
-                    />
-                </div>
-                <div className='flex justify-between my-4'>
-                    <label className='mx-1 text-lg' htmlFor="lastName">Last Name</label>
-                    <input
-                        className='p-2 text-black rounded-md'
-                        type="text"
-                        id="lastName"
-                        placeholder='Singh'
-                        value={lastName}
-                        onChange={handleLastNameChange}
-                    />
-                </div>
-                <div className='flex justify-between my-4'>
-                    <label className='mx-1 text-lg' htmlFor="email">Email</label>
-                    <input
-                        className='p-2 text-black rounded-md'
-                        type="text"
-                        id="email"
-                        placeholder='Email'
-                        value={email}
-                        onChange={handleEmailChange}
-                    />
-                </div>
-                <div className='flex justify-between my-4'>
-                    <label className='mx-1 text-lg' htmlFor="password">Password</label>
-                    <input
-                        className='p-2 text-black rounded-md'
-                        type="password"
-                        id="password"
-                        placeholder='password'
-                        value={password}
-                        onChange={handlePasswordChange}
-                    />
-                </div>
-                <div>
-                    <button 
-                        className='bg-red-500 p-2 rounded-md w-full' 
-                        onClick={handleSubmit} 
-                    >
-                        Submit
-                    </button>
-                </div>
-                <div className='flex justify-center mt-2'>
-                    <p className='text-blue-500 cursor-pointer'>Already have an account? Sign in</p>
-                </div>
-                {showAlert && <SimpleAlert />} 
+            <label htmlFor="firstname">First Name</label>
             </div>
-        </div>
+            <div>
+                <input
+                value={firstName}
+                onChange={handleFirstNameChange}
+                className='p-1 rounded-md text-black' 
+                type="text"
+                 placeholder='Adarsh' />
+            </div>
+          </div>
+
+          <div className='mt-2'>
+            <div>
+            <label htmlFor="lasttname">Last Name</label>
+            </div>
+            <div>
+                <input 
+                 value={lastName}
+                 onChange={handleLastNameChange}
+                className='p-1 rounded-md text-black'
+                 type="text"
+                  placeholder='Singh' />
+            </div>
+          </div>
+
+          <div className='mt-2'>
+            <div>
+            <label htmlFor="email">Email</label>
+            </div>
+            <div>
+                <input
+                value={email}
+                onChange={handleEmailChange}
+                className='text-black p-1 rounded-md' 
+                type="email"
+                 placeholder='adasrh@gmail.com'  />
+            </div>
+          </div>
+
+          <div className='mt-2'>
+            <div>
+            <label htmlFor="lasttname">Password</label>
+            </div>
+            <div>
+                <input
+                value={password}
+                onChange={handlePasswordChange}
+                className='text-black p-1 rounded-md' type="password" placeholder='XXXXXX' />
+            </div>
+          </div>
+         
+
+          <div > 
+            <button 
+             onClick={handleSubmit}
+            className='bg-blue-900 p-2 w-full rounded-md  mt-4'>Signup</button>
+          </div>
+          </div>
+          </div>
+       </div>
     );
 }
 
