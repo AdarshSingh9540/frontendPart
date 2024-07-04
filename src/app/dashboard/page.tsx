@@ -54,7 +54,7 @@ function DashboardContent() {
         if (!topic) {
           throw new Error('Topic is not specified');
         }
-        const response = await fetch('https://namastequiz-backend.vercel.app/chat', {
+        const response = await fetch('https://namastequiz-backend.vercel.app/api/', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
